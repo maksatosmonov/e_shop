@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+<div>The list of all products</div>
+   <ol>
+      {% for product in products %}
+         <a href="{% url 'product' product.id %}"><li> {{ product }} - {{ product.category}}</li></a>
+
+      {% endfor %}
+   </ol>    
+
+    
+{% endblock %}

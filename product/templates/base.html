@@ -24,15 +24,34 @@
       
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'products' %}">All items</a>
+          <a class="nav-link" href="{% url 'products' %}">All ITEMS</a>
         </li>
       </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'product-create' %}">CREATE</a>
+        </li>
+      </ul>
+      <form class="form-inline mr-sm-2" action="{% url 'products' %}" method="POST">
+        {% csrf_token %}
+        <input class="form-control" type="text" name="key_word" placeholder="Search">
+        <button class="btn btn-primary">Search</button>
+      </form>
     </nav>
 
-   
-{% block content %}
+    <div class="row">
+      <div class="col-lg-2 col-md-2">
+      Panel<br>
+      </div>
+      <div class="col-lg-10 col-md-10">
+      {% block content %}
     
-{% endblock %}
+      {% endblock %}
+      </div>
+    </div>
+
+   
+
     
 </body>
 </html>

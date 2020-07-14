@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 
 {% block content %}
 
 <div class="row">
-    <div class="col-lg-3 col-md-6 col-sm-12">
-    </div>
     {% if product.photo %}
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="col-lg-4 col-md-6 col-sm-12">
             <img src="{{ product.photo.url }}" width="100%">
         </div>
     {% endif %}
-    <div class="col-lg-6 col-md-6 col-sm-12">
+    <div class="col-lg-8 col-md-6 col-sm-12">
         <h3>{{ product }}</h3>
         <h3>{{ product.price }}$</h3>
         
@@ -20,6 +19,7 @@
         {% else %}
             <h5 class="alert alert-danger">Sold</h5>
         {% endif %}
+        <a class="btn btn-lg btn-warning" href="{% url 'product-edit' product.id %}">Change</a>
     </div>
 </div>
     

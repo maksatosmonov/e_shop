@@ -2,12 +2,12 @@
 {% load bootstrap4 %}
 
 {% block content %}
-    <h3> Profile of users {{ request.user.username }}</h3>
+    <h3> Profile of users {{ user.username }}</h3>
     <ul>
-        <li>Login {{ request.user.username }}</li>
-        <li>Email {{ request.user.email }}</li>
-        <li>Name {{ request.user.get_full_name }}</li>
-        <li>Products {{ request.user.product.all.count }}</li>
+        <li>Login {{ user.username }}</li>
+        <li>Email {{ user.email }}</li>
+        <li>Name {{ user.get_full_name }}</li>
+        <li>Products {{ user.product.all.count }}</li>
     </ul>
     <h4>Ваши товары:</h4>
     {% include 'includes/products.html' %}

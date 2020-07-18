@@ -4,6 +4,7 @@ from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from core.forms import *
 from product.models import Product
+from django.contrib.auth.models import User
 
 
 def home(request):
@@ -41,9 +42,9 @@ def registration(request):
     return render(request, "core/registration.html", context)
 
 @login_required(login_url="/login/")
-def profile(request):
+def profile(request, pk):
     context = {}
-    context["products"] = Product.objects.filter(active=True, user=request.user)
+    context["user"] = User.objects.get(id=pk)
+    context["products"] = Product.objects.filter(user=context["user"])
     return render(request, "core/profile.html", context)
-
 # Create your views here.

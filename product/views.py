@@ -11,6 +11,7 @@ def products(request):
         key = request.GET.get("key_word")  
         products = Product.objects.filter(
                 Q(active=True), 
+                Q(delated=False),
                 Q(name__contains=key) | 
                 Q(description__contains=key) | 
                 Q(category__name__contains=key))
@@ -18,7 +19,7 @@ def products(request):
         products = products.distinct()
 
     else:
-        products = Product.objects.filter(active=True)
+        products = Product.objects.filter(active=True, delated=False)
 
     return render(
                 request,
@@ -66,6 +67,16 @@ def product_edit(request, id):
     context["form"] = ProductForm(instance=product)
 
     return render(request, "product/form.html", context)
+
+
+@login_required(login_url="login")
+def product_delete(request, id):
+    product = Product.objects.get(id=id)
+    if product.user != request.user:
+        return redirect("home")
+    product.deleted = True 
+    product.save()
+    return render(request, "product/success.html")
 
 
 

@@ -25,6 +25,8 @@ class Product(models.Model):
     photo = models.ImageField(upload_to="product_photo", null=True, blank=True)
     active = models.BooleanField(default=True)
 
+    delated = models.BooleanField(default=False)
+
     def __str__(self):
         return self.name 
     

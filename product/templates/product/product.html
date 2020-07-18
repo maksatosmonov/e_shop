@@ -19,8 +19,12 @@
         {% else %}
             <h5 class="alert alert-danger">Sold</h5>
         {% endif %}
+
         {% if request.user == product.user %}
             <a class="btn btn-lg btn-warning" href="{% url 'product-edit' product.id %}">Change</a>
+            <a class="btn btn-lg btn-danger" href="{% url 'product-delete' product.id %}">Delete</a>
+        {% elif product.user %}  
+            <a href="{% url 'profile' product.user.id %}">{{ product.user }}</a>
         {% endif %}
     </div>
 </div>

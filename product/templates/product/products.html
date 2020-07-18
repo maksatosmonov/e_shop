@@ -1,39 +1,7 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 
+
 {% block content %}
-
-<div id="portfolio" class="container-fluid text-center bg-grey">
-   <h2>ALL PODUCTS</h2><br>
-   <p>All products in this market place will delivered during 3 days</p>
-   <div class="row text-center slideanim">
-   {% for product in products %}
-       <div class="col-sm-4">
-           <div class="thumbnail">
-               {% if product.photo %}
-               <a href="{% url 'product' product.id %}">
-                   <img src="{{ product.photo.url }}" width="200px" height="200px">
-               </a>
-               {% endif %}
-               
-               <p>
-                   <strong>
-                       <a href="{% url 'product' product.id %}">
-                           {{ product.name }}
-                       </a>
-                   </strong>
-               </p>
-               
-               <p>{{ product.price|floatformat:"0" }}$</p>
-           </div>
-       </div>
-   {% endfor %}
-   </div>
-</div>
-
-
-   
-
-
-   
+    {% include 'includes/products.html' %}
 {% endblock %}

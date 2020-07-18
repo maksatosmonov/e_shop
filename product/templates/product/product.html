@@ -19,7 +19,9 @@
         {% else %}
             <h5 class="alert alert-danger">Sold</h5>
         {% endif %}
-        <a class="btn btn-lg btn-warning" href="{% url 'product-edit' product.id %}">Change</a>
+        {% if request.user == product.user %}
+            <a class="btn btn-lg btn-warning" href="{% url 'product-edit' product.id %}">Change</a>
+        {% endif %}
     </div>
 </div>
     

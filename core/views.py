@@ -47,4 +47,12 @@ def profile(request, pk):
     context["user"] = User.objects.get(id=pk)
     context["products"] = Product.objects.filter(user=context["user"])
     return render(request, "core/profile.html", context)
-# Create your views here.
+
+
+def retailers(request):
+    retailers = User.objects.exclude(product=None)
+    context = {"retailers":retailers}
+    return render(request, "core/retailers.html", context)
+
+
+

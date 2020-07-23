@@ -1,10 +1,11 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from core.forms import *
 from product.models import Product
 from django.contrib.auth.models import User
+from django.contrib.auth import update_session_auth_hash
 
 
 def home(request):
@@ -32,14 +33,18 @@ def logout(request):
 
 
 def registration(request):
+    context = {}
     if request.method == "POST":
         form = RegistrationForm(request.POST)
+        password1 = request.POST["password1"]
+        password2 = request.POST["password2"]
         if form.is_valid():
             form.save()
-            return redirect(home)
-    context = {}
+            return redirect("login")
+
     context["form"] = RegistrationForm()
     return render(request, "core/registration.html", context)
+
 
 @login_required(login_url="/login/")
 def profile(request, pk):
@@ -53,6 +58,22 @@ def retailers(request):
     retailers = User.objects.exclude(product=None)
     context = {"retailers":retailers}
     return render(request, "core/retailers.html", context)
+
+
+def password_change(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, "core/password_change.html", {"form": form})
+
 
 
 

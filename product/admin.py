@@ -15,9 +15,9 @@ class ProductAdmin(admin.ModelAdmin):
 
 class CategoryAdmin(admin.ModelAdmin):
     model = Category
-    list_display = ["name", "age_limit", "active"]
+    list_display = ["name", "age_limit", "active", "description"]
     list_display_links = ["name"]
-    list_editable = ["age_limit", "active"]
+    list_editable = ["age_limit", "active", "description"]
 
 
 

@@ -6,7 +6,7 @@
 <div class="container">
     <h2>All retailers information</h2>
     
-    <table class="table table-primary table-datrk table-striped">
+    <table class="table table-primary table-light table-striped">
       <thead>
         <tr class="table-primary">
           <th>Login</th>
@@ -16,14 +16,14 @@
         </tr>
       </thead>
       <tbody>
-        {% for retailer in retailers %} 
+      {% for retailer in retailers %} 
         <tr>
-          <td>{{ retailer.username }}</td>
+          <td><a href="{% url 'profile' retailer.id %}">{{ retailer.username }}</a></td>
           <td>{{ retailer.email }}</td>
           <td>{{ retailer.get_full_name }}</td>
           <td>{{ retailer.product.all.count }}</td>
         </tr>
-       {% endfor %}
+      {% endfor %}
     </tbody>
     </table>
    

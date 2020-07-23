@@ -56,6 +56,9 @@ class Category(models.Model):
         max_length=255)
     age_limit = models.BooleanField(default=True)
     active = models.BooleanField(default=True)
+    description = models.TextField(
+        blank=True,
+        null=True)
 
 
     def __str__(self):

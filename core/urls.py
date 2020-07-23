@@ -9,6 +9,8 @@ urlpatterns = [
     path("registration/", registration, name="registration"),
     path("profile/<int:pk>/", profile, name="profile"),
     path("retailers/", retailers, name="retailers"),
+    path("password_change/", password_change, name="password_change"),
+    
       
 ]
 

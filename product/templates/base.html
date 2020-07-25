@@ -41,19 +41,19 @@
       </ul>
 
 
-      <form class="form-inline mr-sm-2" action="{% url 'products' %}">
+      <form class="form-inline" action="{% url 'products' %}">
         {% csrf_token %}
         <input class="form-control" type="text" name="key_word" placeholder="Search">
-        <button class="btn btn-primary">Search</button>
+        <button class="btn btn-primary my-0 ml-sm-2">Search</button>
       </form>
       {% if request.user.is_authenticated %}
-            <a class="btn btn-info mr-sm-2" href="{% url 'profile' request.user.pk %}">
+            <a class="btn btn-info my-0 ml-sm-2" href="{% url 'profile' request.user.pk %}">
           {{ request.user.username }}
           </a>
-        <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
+        <a class="btn btn-danger my-0 ml-sm-2" href="{% url 'logout' %}">Logout</a>
       {% else %}
-        <a class="btn btn-primary mr-sm-2" href="{% url 'login' %}">Login</a>
-        <a class="btn btn-primary" href="{% url 'registration' %}">Registration</a>
+        <a class="btn btn-primary my-0 ml-sm-2" href="{% url 'login' %}">Login</a>
+        <a class="btn btn-primary my-0 ml-sm-2" href="{% url 'registration' %}">Registration</a>
       {% endif %}
     </nav>
 

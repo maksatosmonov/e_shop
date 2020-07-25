@@ -9,7 +9,12 @@
         <li>Name {{ user.get_full_name }}</li>
         <li>Products {{ user.product.all.count }}</li>
     </ul>
+    <div>
+        <a class="btn btn-primary" href="{% url 'password_change' %}" role="button">Change password</a>
+    </div>
     <h4>Ваши товары:</h4>
-    {% include 'includes/products.html' %}
+    {% include 'includes/products.html' %} 
+
+
 
 {% endblock %}

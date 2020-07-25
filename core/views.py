@@ -46,7 +46,6 @@ def registration(request):
     return render(request, "core/registration.html", context)
 
 
-@login_required(login_url="/login/")
 def profile(request, pk):
     context = {}
     context["user"] = User.objects.get(id=pk)
@@ -66,10 +65,8 @@ def password_change(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  
-            messages.success(request, 'Your password was successfully updated!')
-            return redirect('change_password')
-        else:
-            messages.error(request, 'Please correct the error below.')
+            return render(request, "core/success.html")
+        
     else:
         form = PasswordChangeForm(request.user)
     return render(request, "core/password_change.html", {"form": form})

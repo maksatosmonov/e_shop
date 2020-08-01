@@ -18,4 +18,4 @@ def product_create(request):
     context = {}
     context["form"] = ProductForm()
 
-    return render(request, "product/form.html", context)
+    return render(request, "product/create.html", context)

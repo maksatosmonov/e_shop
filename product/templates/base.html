@@ -60,12 +60,22 @@
 
     <div class="row">
       <div class="col-lg-2 col-md-2">
-      Panel<br>
+        <div class="list-group">
+          {% for category in categories %}
+          <a href="{% url 'category' category.id %}"
+          class="list-group-item
+            {% if category.id == category_pk %}
+                list-group-info
+            {% endif %}">
+          {{ category.name }}       
+          </a>
+          {% endfor %}
+        </div>
       </div>
-      <div class="col-lg-10 col-md-10">
+      <div class="col-lg-10 col-md-10"><br>
       {% block content %}
     
-      {% endblock %}
+      {% endblock %}s
       </div>
     </div>
 

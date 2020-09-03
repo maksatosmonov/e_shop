@@ -8,7 +8,7 @@
         <li>Email {{ user.email }}</li>
         <li>Name {{ user.get_full_name }}</li>
         <li>Category: {{ category_count }}</li>
-        <li>Products {{ user.product.all.count }}</li>
+        <li>Products {{ user.product.count }}</li>
     </ul>
     {% if user == request.user %}
         <div>

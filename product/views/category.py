@@ -4,12 +4,11 @@ from django.urls import reverse
 from product.models import *
 
 
-
 def category(request, pk):
     context = {}
     context["products"] = Product.objects.filter(
         category__id=pk,
-        avialable=True,
+        active=True,
         deleted=False
     )
     context["category_pk"] = pk
